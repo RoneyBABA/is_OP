@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Couple Compatibility Test</title>
+    <style>
+        /* General styling for the page */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Background video settings */
+        video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+            z-index: -1; /* Places video behind other content */
+        }
+
+        /* Styling for the glassmorphism effect form */
+        .glass-form {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80vw;
+            max-width: 400px;
+            padding: 20px;
+            border-radius: 15px;
+            background: rgba(196, 98, 166, 0.5);
+            backdrop-filter: blur(2px);
+            box-shadow: 0 50px 100px rgba(85, 68, 92, 0.5);
+            border: 3px solid rgba(255, 255, 255, 0.555);
+            display: none; /* Initially hidden */
+        }
+
+        /* Input fields styling */
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+            color: #FFE4B5;
+            background-color: rgba(255, 255, 255, 0.2);
+            box-sizing: border-box;
+        }
+
+        /* Button styling */
+        button {
+            padding: 15px;
+            border: none;
+            border-radius: 5px;
+            background-color: #e91e63;
+            color: white;
+            cursor: pointer;
+            font-size: 1.2em;
+            text-align: center;
+            display: block;
+            margin: 0 auto;
+        }
+
+        /* Responsive design adjustments */
+        @media (max-width: 768px) {
+            .glass-form {
+                width: 90vw;
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Fullscreen Entry Button -->
+    <button id="fullscreenBtn" class="fullscreen-btn" style="position: absolute; bottom: 50%; right: 50%; transform: translate(50%, 50%); color: #FFE4B5; background-color: rgba(113, 27, 163, 0.5); border: none; font-size: 1.7em; padding: 20px; border-radius: 10px;">
+    Enter Now</button>
+    
+    <!-- Background Video -->
+    <video id="backgroundVideo" autoplay muted loop preload="auto" style="filter: brightness(95%) " poster="loader.png">
+       <source src="pixel.mp4" type="video/mp4">
+   </video>
+  
+    <!-- Compatibility Test Form with Glass Effect -->
+    <div class="glass-form" id="glassForm">
+        <h2>💖 Couple Compatibility 💖</h2>
+        <h2>Enter your details and find out how compatible you are!</h2>
+
+        <form id="compatibility-form" action="com.php" method="POST">
+            <div class="form-group">
+                <label for="name1">Your Name:</label>
+                <input type="text" id="name1" name="name1" required>
+            </div>
+            <div class="form-group">
+                <label for="age1">Your Age:</label>
+                <input type="number" id="age1" name="age1" required>
+            </div>
+            <div class="form-group">
+                <label for="sign1">Your Sun Sign:</label>
+                <select id="sign1" name="sign1" required>
+                    <option value="">Select your sign</option>
+                    <option value="aries">Aries</option>
+                    <option value="taurus">Taurus</option>
+                    <option value="gemini">Gemini</option>
+                    <option value="cancer">Cancer</option>
+                    <option value="leo">Leo</option>
+                    <option value="virgo">Virgo</option>
+                    <option value="libra">Libra</option>
+                    <option value="scorpio">Scorpio</option>
+                    <option value="sagittarius">Sagittarius</option>
+                    <option value="capricorn">Capricorn</option>
+                    <option value="aquarius">Aquarius</option>
+                    <option value="pisces">Pisces</option>
+                </select>
+            </div>
+            <button type="submit"><b>Check Compatibility</b></button>
+        </form>
+    </div>
+
+    <script>
+        // Get references to UI elements
+        const fullscreenBtn = document.getElementById('fullscreenBtn');
+        const glassForm = document.getElementById('glassForm');
+        const backgroundVideo = document.getElementById('backgroundVideo');
+
+        // Event listener for Fullscreen Button
+        fullscreenBtn.addEventListener('click', function () {
+            const elem = document.documentElement;
+
+            // Request fullscreen mode based on browser compatibility
+            if (elem.requestFullscreen) {
+                elem.requestFullscreen().then(() => {
+                    fullscreenBtn.style.display = 'none'; // Hide button
+                    backgroundVideo.style.display = 'block'; // Show video
+                    glassForm.style.display = 'block'; // Show form
+                });
+            } else if (elem.mozRequestFullScreen) { // Firefox
+                elem.mozRequestFullScreen();
+            } else if (elem.webkitRequestFullscreen) { // Chrome, Safari, Opera
+                elem.webkitRequestFullscreen();
+            } else if (elem.msRequestFullscreen) { // IE/Edge
+                elem.msRequestFullscreen();
+            }
+        });
+    </script>
+</body>
+</html>
