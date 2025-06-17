@@ -22,7 +22,7 @@
 </head>
 <body>
     <div>
-        <video id="video" autoplay muted preload="auto" poster="http://cupid.byethost7.com/assets/bgbaloon.png">
+        <video id="video" autoplay muted preload="auto" poster="src">
             <source src="http://cupid.byethost7.com/assets/bgball.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
@@ -62,10 +62,10 @@
 // PHP Section for Processing Compatibility
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Database connection
-    $servername = "sql313.byethost7.com";
-    $username = "b7_37308076";
-    $password = "elonmusk69";
-    $dbname = "b7_37308076_Cupid";
+    $servername = "srvr";
+    $username = "usrn";
+    $password = "passs";
+    $dbname = "db";
 
     // Create connection
     $conn = new mysqli($servername, $username, $password, $dbname);
